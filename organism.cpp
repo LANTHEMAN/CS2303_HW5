@@ -1,9 +1,8 @@
 organism::organism()
 {
-	
+
 }
 	
-
 
 class ant: public organism
 {
@@ -18,4 +17,15 @@ class doodleBug: public organism
 public:
 	doodleBug();
 	~doodleBug();
+}
+
+
+virtual void move()
+{
+
+}
+
+void ant::move()
+{
+	
 }

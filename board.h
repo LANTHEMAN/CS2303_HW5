@@ -6,9 +6,8 @@ class Board
 {
 public:
 	Board(int size);
-	getEmptyCell(organism** board);
+	organism* getEmptyCell(organism** board);
 	~Board();
-	
 };
 
 
