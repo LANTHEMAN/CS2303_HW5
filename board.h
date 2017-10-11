@@ -8,6 +8,9 @@ public:
 	Board(int size);
 	organism* getEmptyCell(organism** board);
 	~Board();
+
+private:
+	int size;
 };
 
 

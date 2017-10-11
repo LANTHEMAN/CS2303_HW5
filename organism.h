@@ -4,10 +4,10 @@
 class organism
 {
 public:
-	organism(int );
+	organism(int r, int c);
 	virtual void move();
 	~organism();
-	
+
 };
 
 class ant: public organism
@@ -16,7 +16,7 @@ public:
 	ant();
 	void move();
 	~ant();
-	
+
 };
 
 class doodleBug: public organism
