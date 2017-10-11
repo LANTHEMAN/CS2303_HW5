@@ -1,4 +1,5 @@
 #include "organism.h"
+#include <iostream>
 
 Organism::Organism(int r, int c)
 {
@@ -38,32 +39,61 @@ int Organism::getColumn(){
 
 void Organism::move(Organism*** boardRange, int size)
 {
-
+	printf("organism\n");
 }
 
 void Ant::move(Organism*** boardRange, int size)
 {
-	int rand = 0;
-	bool moved = 0;
+  printf("ant\n");
+	int random = rand() % 4;
+	bool moved = false;
+
+	int count = 0;
 
 	while(!moved){
-		switch(rand){
-			case 0:
+		switch(random){
+			case 0://up
 			if(this->getRow()+1 <size && boardRange[this->getRow()+1][this->getColumn()]){
 				Organism* o = this;
 				boardRange[this->getRow()+1][this->getColumn()] = o;
-				moved = 1;
+				moved = true;
 
 			}
 			break;
-			case 1:
+			case 1://right
+			if(this->getColumn()+1 <size && boardRange[this->getRow()][this->getColumn()+1]){
+				Organism* o = this;
+				boardRange[this->getRow()][this->getColumn()+1] = o;
+				moved = true;
+
+			}
 			break;
-			case 2:
+			case 2://down
+			if(this->getRow()-1 >0 && boardRange[this->getRow()-1][this->getColumn()]){
+				Organism* o = this;
+				boardRange[this->getRow()-1][this->getColumn()] = o;
+				moved = true;
+
+			}
 			break;
-			case 3:
+			case 3://left
+			if(this->getColumn()-1>0 && boardRange[this->getRow()][this->getColumn()-1]){
+				Organism* o = this;
+				boardRange[this->getRow()][this->getColumn()-1] = o;
+				moved = true;
+
+			}
 			break;
 		}
-		rand = (rand+1)%4;
+		if(!moved){
+		  random = (random+1)%4;
+	  }
+
+		if(count==3){
+			printf("No moves\n");
+			break;
+		}
+		count++;
 	}
 
 

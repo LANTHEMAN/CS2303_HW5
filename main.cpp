@@ -133,6 +133,7 @@ int main(int argc, char* argv[])
       }while(!added && count<4);
     }
 
+    printf("done loading\n");
     for(int i=0; i<steps; i++){
       board->step();
     }

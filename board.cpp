@@ -24,9 +24,6 @@ Board::Board(int size)
 
 			//theBoard[i][j] = o;
 		}
-
-		theBoard[i] = op;
-		printf("%i:  %p\n", i, theBoard[i]);
 	}
 
 	// for(int i=0; i<size; i++){
@@ -45,8 +42,9 @@ int Board::getSize(){
 	return this->size;
 }
 
-//move doodlebug first
+
 void Board::step(){
+	//move doodlebug first
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
@@ -60,7 +58,9 @@ void Board::step(){
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
+
 			if(o && o->isAnt() == 1){
+
 				o->move(boardRange, size);
 			}
 		}
