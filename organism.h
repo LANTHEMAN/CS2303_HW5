@@ -12,6 +12,8 @@ Organism(int r, int c);
 	int getRow();
 	int getColumn();
 	virtual int isAnt();
+	void survive();
+	int getSurvived();
 
 private:
 	int survived;

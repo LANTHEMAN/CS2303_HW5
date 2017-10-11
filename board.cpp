@@ -50,6 +50,38 @@ void Board::step(){
 	}
 }
 
+void Board::endStep(){
+
+	//doodlebugs
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			Organism* o = boardRange[i][j];
+			if(o && o->isAnt() == 0){
+				o->survive();
+
+				if(o->getSurvived() >=8){
+
+				}
+			}
+		}
+	}
+
+	//ants second
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			Organism* o = boardRange[i][j];
+			if(o && o->isAnt() == 1){
+				o->survive();
+
+				if(o->getSurvived()>=3){
+
+				}
+
+			}
+		}
+	}
+}
+
 void Board::addOrganism(Organism* o){
 	boardRange[o->getRow()][o->getColumn()] = o;
 }
@@ -81,7 +113,7 @@ Organism* Board::getEmptyCell(Organism A)
 		return boardRange[A.getColumn()][A.getRow()-1];
 	}
 
-	return NULL;
+	return 0;
 }
 
 

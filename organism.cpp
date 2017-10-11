@@ -106,12 +106,22 @@ void Organism::moveToRandomAdjacent(Organism*** boardRange, int size)
 
 
 }
+
+int Organism::getSurvived(){
+	return this->survived;
+}
+
+void Organism::survive(){
+	this->survived++;
+}
+
 void DoodleBug::eat(){
 	this->starvation = this->starvation +1;
 }
 
 void DoodleBug::move(Organism*** boardRange, int size)
 {
+	printf("doooooooooodlebug\n");
 	//check top
 	if (this->getColumn()+1 < size && boardRange[this->getRow()][this->getColumn()+1] && boardRange[this->getRow()][this->getColumn()+1]->isAnt()){
 		Organism* deadAnt = boardRange[this->getRow()][this->getColumn() +1];

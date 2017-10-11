@@ -147,9 +147,10 @@ int main(int argc, char* argv[])
 
     printBoard(boardValues, gridSize);
     printf("done loading\n");
-    for(int i=0; i<1; i++){
+    for(int i=0; i<steps; i++){
       board->step();
     }
+    printBoard(boardValues, gridSize);
 
 
 }
