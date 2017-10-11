@@ -1,7 +1,7 @@
-
+#include "organism.h"
 #ifndef BOARD_H
 #define BOARD_H
-#include "organism.h"
+
 
 class Board
 {

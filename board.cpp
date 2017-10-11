@@ -38,7 +38,7 @@ void Board::step(){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
 			if(o && o->isAnt() == 0){
-				o->move();
+				o->move(boardRange, size);
 			}
 		}
 	}
@@ -48,7 +48,7 @@ void Board::step(){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
 			if(o && o->isAnt() == 1){
-				o->move();
+				o->move(boardRange, size);
 			}
 		}
 	}

@@ -36,12 +36,12 @@ int Organism::getColumn(){
 	return this->column;
 }
 
-void Organism::move()
+void Organism::move(Organism*** boardRange, int size)
 {
 
 }
 
-void Ant::move(Board b)
+void Ant::move(Organism*** boardRange, int size)
 {
 	int rand = 0;
 	bool moved = 0;
@@ -49,10 +49,9 @@ void Ant::move(Board b)
 	while(!moved){
 		switch(rand){
 			case 0:
-			if(b.isEmpty(this->row+1, this->column)){
+			if(this->getRow()+1 <size && boardRange[this->getRow()+1][this->getColumn()]){
 				Organism* o = this;
-				b.addToCell(o, this->row+1, this->column);
-				b.clearCell(this->row, this->column);
+				boardRange[this->getRow()+1][this->getColumn()] = o;
 				moved = 1;
 
 			}
@@ -70,7 +69,7 @@ void Ant::move(Board b)
 
 }
 
-void DoodleBug::move()
+void DoodleBug::move(Organism*** boardRange, int size)
 {
 
 }

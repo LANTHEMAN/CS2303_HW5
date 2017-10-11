@@ -85,20 +85,20 @@ int main(int argc, char* argv[])
     printf("loading doodlebugs\n");
     for(int i=0; i<numBug; i++){
       bool added = false;
-      int count =0;
       do{
-        printf("empty cell\n");
-        int rowD = gridSize*rand()/int(RAND_MAX);
-        int columnD = gridSize*rand()/int(RAND_MAX);
+
+        int rowD = rand() % gridSize;
+        int columnD = rand() % gridSize;
+        printf("empty cell   %i, %i\n", rowD, columnD);
         if(!boardValues[rowD][columnD]){
           DoodleBug* d = new DoodleBug(rowD, columnD);
+          printf("new doodlebug in   %i    %i\n", rowD, columnD);
           board->addOrganism(d);
           added=true;
         }else{
           printf("cell occupied\n");
-          count++;
         }
-      }while(!added && count<4);
+      }while(!added);
     }
 
     printf("loading ants\n");
