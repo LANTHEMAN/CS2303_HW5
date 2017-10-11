@@ -12,7 +12,7 @@ PA5: main.o board.o organism.o
 main.o: main.cpp board.h
 	g++ -c -Wall main.cpp
 
-board.o: board.cpp board.h
+board.o: board.cpp board.h organism.h
 	g++ -c -Wall board.cpp
 
 organism.o: organism.cpp organism.h

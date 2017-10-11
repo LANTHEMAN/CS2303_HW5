@@ -6,11 +6,13 @@ class Board
 {
 public:
 	Board(int size);
-	organism* getEmptyCell(organism** board);
+	Organism* getEmptyCell(Organism A);
+	int getSize();
 	~Board();
 
 private:
 	int size;
+	Organism*** boardRange;
 };
 
 

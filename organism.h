@@ -1,34 +1,35 @@
 #ifndef ORGANISM_H
 #define ORGANISM_H
 
-class organism
+class Organism
 {
 public:
-	organism(int r, int c);
+Organism(int r, int c);
 	virtual void move();
-	~organism();
-
+	~Organism();
+	int getRow();
+	int getColumn();
 private:
 	int row;
-	int colum;
+	int column;
 };
 
-class ant: public organism
+class Ant: public Organism
 {
 public:
-	ant():organism(r,c);
+	Ant(int r, int c);
 	void move();
-	~ant();
+	~Ant();
 
 };
 
-class doodleBug: public organism
+class DoodleBug: public Organism
 {
 public:
-	doodleBug():organism(r,c);
+	DoodleBug(int r, int c);
 	void move();
-	~doodleBug();
+	~DoodleBug();
 
-}
+};
 
 #endif

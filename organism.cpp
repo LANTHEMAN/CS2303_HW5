@@ -1,38 +1,46 @@
 #include "organism.h"
 
 
-organism::organism(int r, int c)
+Organism::Organism(int r, int c)
 {
 	row = r;
-	colum = c;
-}
-	
-
-ant::ant():organism(r,c)
-{
-	
+	column = c;
 }
 
-ant::ant():organism(r,c)
-{
-	
-}
 
-virtual void move()
+Ant::Ant(int r, int c) : Organism(r,c)
 {
 
 }
 
-void ant::move()
+DoodleBug::DoodleBug(int r, int c) : Organism(r,c)
 {
 
 }
 
-void doodleBug::move()
+int Organism::getRow(){
+	return this->row;
+}
+
+int Organism::getColumn(){
+	return this->column;
+}
+
+void Organism::move()
 {
 
 }
 
-organism::~organism(){}
-ant::~ant(){}
-doodleBug::~doodleBug(){}
+void Ant::move()
+{
+
+}
+
+void DoodleBug::move()
+{
+
+}
+
+Organism::~Organism(){}
+Ant::~Ant(){}
+DoodleBug::~DoodleBug(){}
