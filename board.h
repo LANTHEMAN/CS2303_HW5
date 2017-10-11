@@ -8,7 +8,9 @@ public:
 	Board(int size);
 	Organism* getEmptyCell(Organism A);
 	int getSize();
+	Organism*** getValues();
 	~Board();
+	void addOrganism(Organism* o);
 
 private:
 	int size;
