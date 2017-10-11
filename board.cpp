@@ -48,6 +48,7 @@ organism** Board::getEmptyCell(Board board, organism A)
 	}
 }
 
+
 Board::~Board()
 {
 

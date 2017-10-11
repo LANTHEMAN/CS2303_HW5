@@ -8,12 +8,15 @@ public:
 	virtual void move();
 	~organism();
 
+private:
+	int row;
+	int colum;
 };
 
 class ant: public organism
 {
 public:
-	ant();
+	ant():organism(r,c);
 	void move();
 	~ant();
 
@@ -22,9 +25,10 @@ public:
 class doodleBug: public organism
 {
 public:
-	doodleBug();
+	doodleBug():organism(r,c);
 	void move();
 	~doodleBug();
+
 }
 
 #endif
