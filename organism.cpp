@@ -8,21 +8,15 @@ organism::organism(int r, int c)
 }
 	
 
-class ant: public organism
+ant::ant():organism(r,c)
 {
-public:
-	ant();
-	~ant();
 	
-};
-
-class doodleBug: public organism
-{
-public:
-	doodleBug();
-	~doodleBug();
 }
 
+ant::ant():organism(r,c)
+{
+	
+}
 
 virtual void move()
 {
@@ -30,6 +24,11 @@ virtual void move()
 }
 
 void ant::move()
+{
+
+}
+
+void doodleBug::move()
 {
 
 }
