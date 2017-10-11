@@ -1,13 +1,14 @@
 #ifndef ORGANISM_H
 #define ORGANISM_H
 
-class organism
+class Organism
 {
 public:
-	organism(int r, int c);
+Organism(int r, int c);
 	virtual void move();
-	~organism();
-
+	~Organism();
+	int getRow();
+	int getColumn();
 private:
 	int row;
 	int colum;
