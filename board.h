@@ -1,3 +1,4 @@
+
 #ifndef BOARD_H
 #define BOARD_H
 #include "organism.h"
@@ -11,6 +12,10 @@ public:
 	Organism*** getValues();
 	~Board();
 	void addOrganism(Organism* o);
+	void step();
+	int isEmpty(int r, int c);
+	void addToCell(Organism* o, int r, int c);
+	void clearCell(int r, int c);
 
 private:
 	int size;

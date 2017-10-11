@@ -1,4 +1,4 @@
-//Author: LMAO RWITTENBURG
+//Author: LMAO RWWITTENBERG
 #include <cstdlib>
 #include <iostream>
 #include "board.h"
@@ -78,7 +78,8 @@ int main(int argc, char* argv[])
     break;
   }
 
-    Board* board = new Board(gridSize);
+    const int s= gridSize;
+    Board* board = new Board(s);
     Organism*** boardValues = board->getValues();
 
     printf("loading doodlebugs\n");
@@ -117,6 +118,10 @@ int main(int argc, char* argv[])
           count++;
         }
       }while(!added && count<4);
+    }
+
+    for(int i=0; i<steps; i++){
+      board->step();
     }
 
 

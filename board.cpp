@@ -8,40 +8,50 @@ Board::Board(int size)
 {
 	this->size = size;
 
-	Organism*** tb = new Organism**;
-	Organism*** theBoard = tb;
+	Organism*** theBoard = new Organism**;
 
-	for(int i=0; i<size; i++){
-		Organism** t= new Organism*;
-		*tb = t;
-		for(int j=0; j<size; j++){
-			printf("%i    %i\n", i,j);
-			Organism* t2 = 0;
-			*t = t2;
-			t++;
-		}
-		tb++;
+	for (int i=0;i<size;i++)
+	{
+		printf("%i\n", i);
+		theBoard[i] = new Organism*;
 	}
 
-	// for (int i=0;i<size;i++)
-	// {
-	// 	printf("%i\n", i);
-	// 	theBoard[i] = new Organism*;
-	// }
-	//
-	// for(int i=0; i<size; i++){
-	// 	for(int j=0; j<size; j++){
-	// 		printf("%i    %i\n", i,j);
-	// 		Organism* o = 0;
-	// 		theBoard[i][j] = o;
-	// 	}
-	// }
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			printf("%i    %i\n", i,j);
+			Organism* o = 0;
+
+			theBoard[i][j] = o;
+		}
+	}
 	printf("test\n");
 	this->boardRange = theBoard;
 }
 
 int Board::getSize(){
 	return this->size;
+}
+
+//move doodlebug first
+void Board::step(){
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			Organism* o = boardRange[i][j];
+			if(o && o->isAnt() == 0){
+				o->move();
+			}
+		}
+	}
+
+	//move ants second
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			Organism* o = boardRange[i][j];
+			if(o && o->isAnt() == 1){
+				o->move();
+			}
+		}
+	}
 }
 
 void Board::addOrganism(Organism* o){
@@ -82,4 +92,21 @@ Organism* Board::getEmptyCell(Organism A)
 Board::~Board()
 {
 
+}
+
+
+int Board::isEmpty(int r, int c){
+	if(boardRange[r][c]){
+		return 0;
+	}else{
+		return 1;
+	}
+}
+
+void Board::addToCell(Organism* o, int r, int c){
+	boardRange[r][c] = o;
+}
+
+void Board::clearCell(int r, int c){
+	boardRange[r][c] = 0;
 }
