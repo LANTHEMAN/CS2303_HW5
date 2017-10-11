@@ -12,29 +12,9 @@ Board::Board(int size)
 
 	for (int i=0;i<size;i++)
 	{
-		printf("%i\n", i);
 		theBoard[i] = new Organism*[size];
 	}
 
-	for(int i=0; i<size; i++){
-		printf("\n");
-		for(int j=0; j<size; j++){
-			printf("   %p  ",theBoard[i][j]);
-			//Organism* o = 0;
-
-			//theBoard[i][j] = o;
-		}
-	}
-
-	// for(int i=0; i<size; i++){
-	// 	for(int j=0; j<size; j++){
-	// 		printf("%i    %i\n", i,j);
-	// 		Organism* o = 0;
-	//
-	// 		theBoard[i][j] = o;
-	// 	}
-	// }
-	printf("test\n");
 	this->boardRange = theBoard;
 }
 

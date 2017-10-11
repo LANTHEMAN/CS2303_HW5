@@ -17,6 +17,9 @@ private:
 	int survived;
 	int row;
 	int column;
+
+protected:
+	void moveToRandomAdjacent(Organism*** b, int s);
 };
 
 class Ant: public Organism
@@ -36,6 +39,7 @@ public:
 	void move(Organism*** boardRange, int size);
 	~DoodleBug();
 	int isAnt();
+	void eat();
 
 private:
 	int starvation;

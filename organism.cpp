@@ -42,7 +42,12 @@ void Organism::move(Organism*** boardRange, int size)
 	printf("organism\n");
 }
 
-void Ant::move(Organism*** boardRange, int size)
+void Ant::move(Organism*** boardRange, int size){
+	moveToRandomAdjacent(boardRange, size);
+}
+
+
+void Organism::moveToRandomAdjacent(Organism*** boardRange, int size)
 {
 	int random = rand() % 4;
 	bool moved = false;
@@ -70,7 +75,7 @@ void Ant::move(Organism*** boardRange, int size)
 			}
 			break;
 			case 2://down
-			if(this->getRow()-1 >0 && boardRange[this->getRow()-1][this->getColumn()] == 0){
+			if(this->getRow()-1 >=0 && boardRange[this->getRow()-1][this->getColumn()] == 0){
 				Organism* o = this;
 				boardRange[this->getRow()-1][this->getColumn()] = o;
 				boardRange[this->getRow()][this->getColumn()] = 0;
@@ -79,7 +84,7 @@ void Ant::move(Organism*** boardRange, int size)
 			}
 			break;
 			case 3://left
-			if(this->getColumn()-1>0 && boardRange[this->getRow()][this->getColumn()-1] == 0){
+			if(this->getColumn()-1>=0 && boardRange[this->getRow()][this->getColumn()-1] == 0){
 				Organism* o = this;
 				boardRange[this->getRow()][this->getColumn()-1] = o;
 				boardRange[this->getRow()][this->getColumn()] = 0;
@@ -101,10 +106,53 @@ void Ant::move(Organism*** boardRange, int size)
 
 
 }
+void DoodleBug::eat(){
+	this->starvation = this->starvation +1;
+}
 
 void DoodleBug::move(Organism*** boardRange, int size)
 {
+	//check top
+	if (this->getColumn()+1 < size && boardRange[this->getRow()][this->getColumn()+1] && boardRange[this->getRow()][this->getColumn()+1]->isAnt()){
+		Organism* deadAnt = boardRange[this->getRow()][this->getColumn() +1];
+		deadAnt->~Organism();
+		boardRange[this->getRow()][this->getColumn()+1] = this;
+		boardRange[this->getRow()][this->getColumn()] = 0;
+		this->eat();
+    return;
+	}
 
+	//check right
+	if (this->getRow()+1 < size && boardRange[this->getRow()+1][this->getColumn()] && boardRange[this->getRow()+1][this->getColumn()]->isAnt()){
+		Organism* deadAnt = boardRange[this->getRow()+1][this->getColumn()];
+		deadAnt->~Organism();
+		boardRange[this->getRow()+1][this->getColumn()] = this;
+		boardRange[this->getRow()][this->getColumn()] = 0;
+		this->eat();
+    return;
+	}
+
+	//check down
+	if (this->getColumn()-1 >=0 && boardRange[this->getRow()][this->getColumn()-1] && boardRange[this->getRow()][this->getColumn()-1]->isAnt()){
+		Organism* deadAnt = boardRange[this->getRow()][this->getColumn()-1];
+		deadAnt->~Organism();
+		boardRange[this->getRow()][this->getColumn()-1] = this;
+		boardRange[this->getRow()][this->getColumn()] = 0;
+		this->eat();
+    return;
+	}
+
+	//check left
+	if (this->getRow()-1>=0 && boardRange[this->getRow()-1][this->getColumn()] && boardRange[this->getRow()-1][this->getColumn()]->isAnt()){
+		Organism* deadAnt = boardRange[this->getRow()-1][this->getColumn()];
+		deadAnt->~Organism();
+		boardRange[this->getRow()-1][this->getColumn()] = this;
+		boardRange[this->getRow()][this->getColumn()] = 0;
+		this->eat();
+    return;
+	}
+
+	moveToRandomAdjacent(boardRange, size);
 }
 
 Organism::~Organism(){}
