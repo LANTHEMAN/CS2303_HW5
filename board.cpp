@@ -17,11 +17,15 @@ if (theBoard) //if found size for the board
 }
 }
 
-organism* Board::getEmptyCell(organism** board,organism A)
+organism** Board::getEmptyCell(organism** board,organism A)
 {
-	
-	if organism[A.colum][A.row]
+
+	if(organism[A.colum][A.row] == null)
+	{
+
+	}
 }
+
 
 Board::~Board()
 {

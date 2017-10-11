@@ -1,6 +1,10 @@
-organism::organism()
-{
+#include "organism.h"
 
+
+organism::organism(int r, int c)
+{
+	row = r;
+	colum = c;
 }
 	
 
@@ -27,5 +31,9 @@ virtual void move()
 
 void ant::move()
 {
-	
+
 }
+
+organism::~organism(){}
+ant::~ant(){}
+doodleBug::~doodleBug(){}
