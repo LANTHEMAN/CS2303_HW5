@@ -8,13 +8,21 @@ Board::Board(int size)
 {
 	this->size = size;
 
-	Organism*** theBoard = new Organism**;
+	Organism*** theBoard = new Organism**[size];
 
 	for (int i=0;i<size;i++)
 	{
-		Organism** op = new Organism*;
+		printf("%i\n", i);
+		theBoard[i] = new Organism*[size];
+	}
+
+	for(int i=0; i<size; i++){
+		printf("\n");
 		for(int j=0; j<size; j++){
-			op[j] = 0;
+			printf("   %p  ",theBoard[i][j]);
+			//Organism* o = 0;
+
+			//theBoard[i][j] = o;
 		}
 
 		theBoard[i] = op;
