@@ -3,6 +3,16 @@
 #include <iostream>
 #include "board.h"
 /*PA5 gridSize #doodlebugs #ants #time_steps seed pause*/
+
+void printAddresses(Organism*** o, int size){
+  for(int i=0; i<size; i++){
+    for(int j=0 ; j<size; j++){
+      printf("%p  ", o[i][j]);
+    }
+    printf("\n");
+  }
+}
+
 int main(int argc, char* argv[])
 {
 
@@ -82,6 +92,8 @@ int main(int argc, char* argv[])
     Board* board = new Board(s);
     Organism*** boardValues = board->getValues();
 
+    printAddresses(boardValues, gridSize);
+
     printf("loading doodlebugs\n");
     for(int i=0; i<numBug; i++){
       bool added = false;
@@ -90,6 +102,7 @@ int main(int argc, char* argv[])
         int rowD = rand() % gridSize;
         int columnD = rand() % gridSize;
         printf("empty cell   %i, %i\n", rowD, columnD);
+        printf("%p\n", boardValues[rowD][columnD]);
         if(!boardValues[rowD][columnD]){
           DoodleBug* d = new DoodleBug(rowD, columnD);
           printf("new doodlebug in   %i    %i\n", rowD, columnD);
