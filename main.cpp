@@ -120,8 +120,8 @@ int main(int argc, char* argv[])
       bool added = false;
       int count =0;
       do{
-        int rowA = gridSize*rand()/int(RAND_MAX);
-        int columnA = gridSize*rand()/int(RAND_MAX);
+        int rowA = rand() % gridSize;
+        int columnA = rand() % gridSize;
         if(!boardValues[rowA][columnA]){
           Ant* a = new Ant(rowA, columnA);
           board->addOrganism(a);
@@ -134,7 +134,7 @@ int main(int argc, char* argv[])
     }
 
     printf("done loading\n");
-    for(int i=0; i<steps; i++){
+    for(int i=0; i<1; i++){
       board->step();
     }
 

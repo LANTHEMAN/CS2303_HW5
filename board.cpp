@@ -45,6 +45,8 @@ int Board::getSize(){
 
 void Board::step(){
 	//move doodlebug first
+
+	printf("MOVING DBBBS\n");
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
@@ -55,6 +57,7 @@ void Board::step(){
 	}
 
 	//move ants second
+	printf("MOVING ANTSSSS\n");
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];

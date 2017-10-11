@@ -44,7 +44,6 @@ void Organism::move(Organism*** boardRange, int size)
 
 void Ant::move(Organism*** boardRange, int size)
 {
-  printf("ant\n");
 	int random = rand() % 4;
 	bool moved = false;
 
@@ -53,33 +52,37 @@ void Ant::move(Organism*** boardRange, int size)
 	while(!moved){
 		switch(random){
 			case 0://up
-			if(this->getRow()+1 <size && boardRange[this->getRow()+1][this->getColumn()]){
+			if(this->getRow()+1 <size && boardRange[this->getRow()+1][this->getColumn()] == 0){
 				Organism* o = this;
 				boardRange[this->getRow()+1][this->getColumn()] = o;
+				boardRange[this->getRow()][this->getColumn()] = 0;
 				moved = true;
 
 			}
 			break;
 			case 1://right
-			if(this->getColumn()+1 <size && boardRange[this->getRow()][this->getColumn()+1]){
+			if(this->getColumn()+1 <size && boardRange[this->getRow()][this->getColumn()+1] == 0){
 				Organism* o = this;
 				boardRange[this->getRow()][this->getColumn()+1] = o;
+				boardRange[this->getRow()][this->getColumn()] = 0;
 				moved = true;
 
 			}
 			break;
 			case 2://down
-			if(this->getRow()-1 >0 && boardRange[this->getRow()-1][this->getColumn()]){
+			if(this->getRow()-1 >0 && boardRange[this->getRow()-1][this->getColumn()] == 0){
 				Organism* o = this;
 				boardRange[this->getRow()-1][this->getColumn()] = o;
+				boardRange[this->getRow()][this->getColumn()] = 0;
 				moved = true;
 
 			}
 			break;
 			case 3://left
-			if(this->getColumn()-1>0 && boardRange[this->getRow()][this->getColumn()-1]){
+			if(this->getColumn()-1>0 && boardRange[this->getRow()][this->getColumn()-1] == 0){
 				Organism* o = this;
 				boardRange[this->getRow()][this->getColumn()-1] = o;
+				boardRange[this->getRow()][this->getColumn()] = 0;
 				moved = true;
 
 			}
@@ -90,7 +93,7 @@ void Ant::move(Organism*** boardRange, int size)
 	  }
 
 		if(count==3){
-			printf("No moves\n");
+			//printf("No moves\n");
 			break;
 		}
 		count++;
