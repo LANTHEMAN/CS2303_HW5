@@ -94,7 +94,7 @@ Organism*** Board::getValues(){
 	return this->boardRange;
 }
 
-Organism* Board::getEmptyCell(Organism A)
+void Board::getEmptyCell(Organism A)
 {
 	int random = rand() % 4;
 	bool selected = false;
@@ -107,7 +107,6 @@ Organism* Board::getEmptyCell(Organism A)
 	{
 		newRow = A.getRow();
 		newColumn = A.getColumn()+1;
-		return boardRange[A.getColumn()+1][A.getRow()];
 		selected = true;
 	}
 	break;
@@ -117,7 +116,6 @@ Organism* Board::getEmptyCell(Organism A)
 	{
 		newRow = A.getRow()+1;
 		newColumn = A.getColumn();
-		return boardRange[A.getColumn()][A.getRow()+1];
 		selected = true;
 	}
 	break;
@@ -127,7 +125,6 @@ Organism* Board::getEmptyCell(Organism A)
 	if (A.getColumn()-1 >= 0 && boardRange[A.getColumn()][A.getRow()+1]){
 		newRow = A.getRow();
 		newColumn = A.getColumn()-1;
-		return boardRange[A.getColumn()-1][A.getRow()];
 		selected = true;
 	}
 	break;
@@ -137,7 +134,6 @@ Organism* Board::getEmptyCell(Organism A)
 	if ((A.getRow()-11 >= 0) && (boardRange[A.getColumn()][A.getRow()-1])){
 		newRow = A.getRow()-1;
 		newColumn = A.getColumn();
-		return boardRange[A.getColumn()][A.getRow()-1];
 		selected = true;
 	}
 	break;
@@ -151,7 +147,6 @@ Organism* Board::getEmptyCell(Organism A)
 	}
 	count++;
 }
-	return 0;
 }
 
 
