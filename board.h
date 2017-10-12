@@ -7,7 +7,7 @@ class Board
 {
 public:
 	Board(int size);
-	void getEmptyCell(Organism A);
+	void getEmptyCell(Organism* A);
 	int getSize();
 	Organism*** getValues();
 	~Board();

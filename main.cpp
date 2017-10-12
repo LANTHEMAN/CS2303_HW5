@@ -4,7 +4,14 @@
 #include "board.h"
 /*PA5 gridSize #doodlebugs #ants #time_steps seed pause*/
 
+/**
+*prints the addresses of the board
+*@param o Organism*** is a pointer to the game board
+*@param size is the integer size of the gridSize
+*@return void
+*/
 void printAddresses(Organism*** o, int size){
+  //iterates through the board cells
   for(int i=0; i<size; i++){
     for(int j=0 ; j<size; j++){
       printf("%p  ", o[i][j]);
@@ -13,7 +20,14 @@ void printAddresses(Organism*** o, int size){
   }
 }
 
+/**
+*prints the board
+*@param o Organism*** is a pointer to the game board
+*@param size is the integer size of the gridSize
+*@return void
+*/
 void printBoard(Organism*** o, int size){
+  //iterates through the board cells
   for(int i=0; i<size; i++){
     for(int j=0 ; j<size; j++){
       Organism* op = o[i][j];
@@ -33,12 +47,15 @@ void printBoard(Organism*** o, int size){
 
 int main(int argc, char* argv[])
 {
+    //command line arguments
     int gridSize = 20;
     int numBug = 5;
     int numAnt = 100;
     int steps = 1000;
     int seed = 1;
     int pause = 0;
+
+  //switch based on the different number of commandline arguments
   switch(argc)
   {
     case 1:
@@ -96,6 +113,7 @@ int main(int argc, char* argv[])
     break;
 
     case 7:
+    printf("seven");
     gridSize = atoi(argv[1]);//
     numBug = atoi(argv[2]);//
     numAnt = atoi(argv[3]);//
@@ -109,12 +127,13 @@ int main(int argc, char* argv[])
     Board* board = new Board(s);
     Organism*** boardValues = board->getValues();
 
-    printAddresses(boardValues, gridSize);
+    //printAddresses(boardValues, gridSize);
 
     printf("loading doodlebugs\n");
+    //iterates through and loads bugs in random locations
     for(int i=0; i<numBug; i++){
       bool added = false;
-      do{
+      do{//do while bug isnt added
 
         int rowD = rand() % gridSize;
         int columnD = rand() % gridSize;
@@ -128,10 +147,11 @@ int main(int argc, char* argv[])
     }
 
     printf("loading ants\n");
+    //iterates through and loads ants randomly
     for(int i=0; i<numAnt; i++){
       bool added = false;
       int count =0;
-      do{
+      do{//do while ant isnt added
         int rowA = rand() % gridSize;
         int columnA = rand() % gridSize;
         if(!boardValues[rowA][columnA]){
@@ -144,12 +164,19 @@ int main(int argc, char* argv[])
       }while(!added && count<4);
     }
 
+    printf("Loaded Board:\n");
     printBoard(boardValues, gridSize);
-    printf("done loading\n");
 
+    //iterates through the user specified number of steps
     for(int i=0; i<steps; i++){
       board->step();
+      if(pause ==1){
+        printBoard(boardValues, gridSize);
+        char* c;
+        scanf("%i", &c);
+      }
     }
+    //prints final game board
     printBoard(boardValues, gridSize);
 
 

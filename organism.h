@@ -5,15 +5,18 @@ class Organism
 {
 public:
 Organism(int r, int c);
-	virtual void move(Organism*** boardRange, int size);
-	~Organism();
+	virtual void move(Organism*** boardRange, int size) = 0;
+	virtual ~Organism();
 	int getRow();
 	int getColumn();
 	virtual int isAnt();
 	void survive();
 	int getSurvived();
+	int getStarvation();
+  void setStarvation();
 
-private:
+protected:
+	int starvation;
 	int survived;
 	int row;
 	int column;
@@ -40,9 +43,6 @@ public:
 	~DoodleBug();
 	int isAnt();
 	void eat();
-
-private:
-	int starvation;
 
 };
 
