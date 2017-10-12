@@ -13,9 +13,26 @@ void printAddresses(Organism*** o, int size){
   }
 }
 
+void printBoard(Organism*** o, int size){
+  for(int i=0; i<size; i++){
+    for(int j=0 ; j<size; j++){
+      Organism* op = o[i][j];
+      if(op){
+        if(op->isAnt()){
+          printf("A  ");
+        }else{
+          printf("D  ");
+        }
+      }else{
+        printf("E  ");
+      }
+    }
+    printf("\n");
+  }
+}
+
 int main(int argc, char* argv[])
 {
-
     int gridSize = 20;
     int numBug = 5;
     int numAnt = 100;
@@ -101,22 +118,17 @@ int main(int argc, char* argv[])
 
         int rowD = rand() % gridSize;
         int columnD = rand() % gridSize;
-        printf("empty cell   %i, %i\n", rowD, columnD);
-        printf("%p\n", boardValues[rowD][columnD]);
         if(!boardValues[rowD][columnD]){
           DoodleBug* d = new DoodleBug(rowD, columnD);
           printf("new doodlebug in   %i    %i\n", rowD, columnD);
           board->addOrganism(d);
           added=true;
-        }else{
-          printf("cell occupied\n");
         }
       }while(!added);
     }
 
     printf("loading ants\n");
     for(int i=0; i<numAnt; i++){
-      printf("empty cell\n");
       bool added = false;
       int count =0;
       do{
@@ -127,22 +139,18 @@ int main(int argc, char* argv[])
           board->addOrganism(a);
           added=true;
         }else{
-          printf("repeating cell\n");
           count++;
         }
       }while(!added && count<4);
     }
 
+    printBoard(boardValues, gridSize);
     printf("done loading\n");
-    for(int i=0; i<gridSize; i++){
-  		printf("\n");
-  		for(int j=0; j<gridSize; j++){
-  			printf("   %p  ",boardValues[i][j]);
-  		}
-  	}
+
     for(int i=0; i<steps; i++){
       board->step();
     }
+    printBoard(boardValues, gridSize);
 
 
 }

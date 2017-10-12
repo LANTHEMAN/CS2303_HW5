@@ -2,7 +2,8 @@
 #include "organism.h"
 #include <cstddef>
 #include <iostream>
-
+int newRow;
+int newColumn;
 
 Board::Board(int size)
 {
@@ -12,29 +13,9 @@ Board::Board(int size)
 
 	for (int i=0;i<size;i++)
 	{
-		printf("%i\n", i);
 		theBoard[i] = new Organism*[size];
 	}
 
-	for(int i=0; i<size; i++){
-		printf("\n");
-		for(int j=0; j<size; j++){
-			printf("   %p  ",theBoard[i][j]);
-			//Organism* o = 0;
-
-			//theBoard[i][j] = o;
-		}
-	}
-
-	// for(int i=0; i<size; i++){
-	// 	for(int j=0; j<size; j++){
-	// 		printf("%i    %i\n", i,j);
-	// 		Organism* o = 0;
-	//
-	// 		theBoard[i][j] = o;
-	// 	}
-	// }
-	printf("test\n");
 	this->boardRange = theBoard;
 }
 
@@ -45,6 +26,8 @@ int Board::getSize(){
 
 void Board::step(){
 	//move doodlebug first
+
+	printf("MOVING DBBBS\n");
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
@@ -55,6 +38,7 @@ void Board::step(){
 	}
 
 	//move ants second
+	printf("MOVING ANTSSSS\n");
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			Organism* o = boardRange[i][j];
@@ -62,6 +46,41 @@ void Board::step(){
 			if(o && o->isAnt() == 1){
 
 				o->move(boardRange, size);
+			}
+		}
+	}
+}
+
+void Board::endStep(){
+
+	//doodlebugs
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			Organism* o = boardRange[i][j];
+			if(o && o->isAnt() == 0){
+				if(o->getSurvived() >=8)
+				{
+					this->getEmptyCell(*o);
+				 DoodleBug* d = new DoodleBug(newRow,newColumn);
+				 this->addOrganism(d);
+				}
+			}
+		}
+	}
+
+	//ants second
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			Organism* o = boardRange[i][j];
+			if(o && o->isAnt() == 1){
+				o->survive();
+				if(o->getSurvived()>=3)
+				{
+					this->getEmptyCell(*o);
+					Ant* A = new Ant(newRow,newColumn);
+					this->addOrganism(A);
+				}
+
 			}
 		}
 	}
@@ -77,28 +96,62 @@ Organism*** Board::getValues(){
 
 Organism* Board::getEmptyCell(Organism A)
 {
-
+	int random = rand() % 4;
+	bool selected = false;
+	int count = 0;
+	while(!selected){
+		switch(random){
+			case 0://up
 	//check top
-	if (A.getColumn()+1 < this->getSize() && boardRange[A.getColumn()+1][A.getRow()]){
+	if (A.getColumn()+1 < this->getSize() && boardRange[A.getColumn()+1][A.getRow()])
+	{
+		newRow = A.getRow();
+		newColumn = A.getColumn()+1;
 		return boardRange[A.getColumn()+1][A.getRow()];
+		selected = true;
 	}
-
+	break;
+	case 1:
 	//check right
-	if (A.getRow()+1 < this->getSize() && boardRange[A.getColumn()][A.getRow()+1]){
+	if (A.getRow()+1 < this->getSize() && boardRange[A.getColumn()][A.getRow()+1])
+	{
+		newRow = A.getRow()+1;
+		newColumn = A.getColumn();
 		return boardRange[A.getColumn()][A.getRow()+1];
+		selected = true;
 	}
+	break;
 
+	case 2:
 	//check down
 	if (A.getColumn()-1 >= 0 && boardRange[A.getColumn()][A.getRow()+1]){
+		newRow = A.getRow();
+		newColumn = A.getColumn()-1;
 		return boardRange[A.getColumn()-1][A.getRow()];
+		selected = true;
 	}
+	break;
 
+	case 3:
 	//check left
 	if ((A.getRow()-11 >= 0) && (boardRange[A.getColumn()][A.getRow()-1])){
+		newRow = A.getRow()-1;
+		newColumn = A.getColumn();
 		return boardRange[A.getColumn()][A.getRow()-1];
+		selected = true;
+	}
+	break;
+}
+	if(!selected){
+		random = (random+1)%4;
 	}
 
-	return NULL;
+	if(count==3){
+		break;
+	}
+	count++;
+}
+	return 0;
 }
 
 

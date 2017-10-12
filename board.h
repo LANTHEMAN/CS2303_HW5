@@ -16,6 +16,7 @@ public:
 	int isEmpty(int r, int c);
 	void addToCell(Organism* o, int r, int c);
 	void clearCell(int r, int c);
+	void endStep();
 
 private:
 	int size;

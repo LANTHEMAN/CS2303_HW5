@@ -1,5 +1,3 @@
-
-
 #ifndef ORGANISM_H
 #define ORGANISM_H
 
@@ -12,11 +10,16 @@ Organism(int r, int c);
 	int getRow();
 	int getColumn();
 	virtual int isAnt();
+	void survive();
+	int getSurvived();
 
 private:
 	int survived;
 	int row;
 	int column;
+
+protected:
+	void moveToRandomAdjacent(Organism*** b, int s);
 };
 
 class Ant: public Organism
@@ -36,6 +39,7 @@ public:
 	void move(Organism*** boardRange, int size);
 	~DoodleBug();
 	int isAnt();
+	void eat();
 
 private:
 	int starvation;
